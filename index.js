@@ -16,10 +16,9 @@ app.get('/', (req, res) => {
     res.send('Hello Express JS')
 })
 
-mongoose.connect('mongodb+srv://ibk2gallo:IXBwlp7rwW5D31Z2@cluster0.zahpeza.mongodb.net/Node-API?retryWrites=true&w=majority&appName=Cluster0')
-    .then(() => {
-        console.log('Connexion Ok')
-    })
-    .catch(() => {
-        console.log('Connexion Error')
-    })
+mongoose.connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+.then(() => console.log('Connected to MongoDB'))
+.catch(err => console.error('Error connecting to MongoDB:', err));
